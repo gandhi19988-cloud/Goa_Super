@@ -38,6 +38,22 @@ Build:
 npm.cmd run build
 ```
 
+## Netlify Deploy
+
+This repo includes `netlify.toml`, so Netlify should use:
+
+```text
+Build command: npm run build
+Publish directory: dist
+```
+
+Add these environment variables in Netlify before deploying:
+
+```env
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
+```
+
 ## Routes
 
 - `/` public display board
