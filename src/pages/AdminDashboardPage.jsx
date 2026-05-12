@@ -35,7 +35,7 @@ function isLegacyLogoUrl(value) {
 
 const DEFAULT_SETTINGS_FORM = {
   id: '',
-  siteTitle: 'Goa Super',
+  siteTitle: 'Goa Super Satta',
   logoUrl: '',
   emptyStateText: '*** *',
   defaultSlotsText: DEFAULT_TIME_SLOTS.join('\n'),

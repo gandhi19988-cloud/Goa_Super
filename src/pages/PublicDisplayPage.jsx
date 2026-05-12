@@ -19,7 +19,7 @@ const LEGACY_SITE_TITLE = 'Kolkata Fatafati';
 const LEGACY_LOGO_FILENAME = 'logo1';
 
 const DEFAULT_SITE_SETTINGS = {
-  siteTitle: 'Goa Super',
+  siteTitle: 'Goa Super Satta',
   logoUrl: '',
   emptyStateText: EMPTY_SLOT_PLACEHOLDER,
   defaultSlots: DEFAULT_TIME_SLOTS,
