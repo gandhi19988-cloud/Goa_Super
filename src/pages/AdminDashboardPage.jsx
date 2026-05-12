@@ -10,6 +10,7 @@ import {
 } from '../lib/adminContentApi';
 import {
   DEFAULT_TIME_SLOTS,
+  getCurrentMonthDateRange,
   getCurrentMonthDates,
   getMonthLabel,
   getValidTimeSlots,
@@ -74,6 +75,10 @@ function AdminDashboardPage({ adminEmail, onSignOut }) {
     () => getCurrentMonthDates(selectedMonth),
     [selectedMonth],
   );
+  const monthDateRange = useMemo(
+    () => getCurrentMonthDateRange(selectedMonth),
+    [selectedMonth],
+  );
   const monthLabel = useMemo(() => getMonthLabel(selectedMonth), [selectedMonth]);
   const [slotValues, setSlotValues] = useState({});
   const [timeSlots, setTimeSlots] = useState(DEFAULT_TIME_SLOTS);
@@ -92,8 +97,7 @@ function AdminDashboardPage({ adminEmail, onSignOut }) {
       setIsLoading(true);
       setStatusMessage('');
 
-      const startDate = monthDates[0]?.isoDate;
-      const endDate = monthDates[monthDates.length - 1]?.isoDate;
+      const { startDate, endDate } = monthDateRange;
 
       if (!startDate || !endDate) {
         setIsLoading(false);
@@ -137,7 +141,7 @@ function AdminDashboardPage({ adminEmail, onSignOut }) {
     return () => {
       isMounted = false;
     };
-  }, [monthDates]);
+  }, [monthDates, monthDateRange]);
 
   async function handleSignOut() {
     const { error } = await signOutAdmin();

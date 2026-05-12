@@ -15,16 +15,34 @@ export const DEFAULT_TIME_SLOTS = [
   '07:00 PM',
 ];
 
-export function getCurrentMonthDates(referenceDate = new Date()) {
+function getMonthDays(referenceDate) {
   return eachDayOfInterval({
     start: startOfMonth(referenceDate),
     end: endOfMonth(referenceDate),
-  }).map((date) => ({
+  });
+}
+
+function formatMonthDate(date) {
+  return {
     date,
     isoDate: format(date, 'yyyy-MM-dd'),
     dayLabel: format(date, 'EEE'),
     dateLabel: format(date, 'dd MMM yyyy'),
-  }));
+  };
+}
+
+export function getCurrentMonthDates(referenceDate = new Date(), order = 'desc') {
+  const dates = getMonthDays(referenceDate);
+  const orderedDates = order === 'asc' ? dates : [...dates].reverse();
+
+  return orderedDates.map(formatMonthDate);
+}
+
+export function getCurrentMonthDateRange(referenceDate = new Date()) {
+  return {
+    startDate: format(startOfMonth(referenceDate), 'yyyy-MM-dd'),
+    endDate: format(endOfMonth(referenceDate), 'yyyy-MM-dd'),
+  };
 }
 
 export function getMonthLabel(referenceDate = new Date()) {

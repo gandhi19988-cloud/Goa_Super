@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import {
   DEFAULT_TIME_SLOTS,
   EMPTY_SLOT_PLACEHOLDER,
+  getCurrentMonthDateRange,
   getCurrentMonthDates,
   getSlotDisplayValue,
   getValidTimeSlots,
@@ -79,6 +80,7 @@ function formatLastUpdated(value) {
 
 function PublicDisplayPage() {
   const monthDates = useMemo(() => getCurrentMonthDates(), []);
+  const monthDateRange = useMemo(() => getCurrentMonthDateRange(), []);
   const [siteSettings, setSiteSettings] = useState(DEFAULT_SITE_SETTINGS);
   const [slotContentByDate, setSlotContentByDate] = useState({});
   const [loadError, setLoadError] = useState('');
@@ -87,8 +89,7 @@ function PublicDisplayPage() {
     let isMounted = true;
 
     async function loadDisplayContent() {
-      const startDate = monthDates[0]?.isoDate;
-      const endDate = monthDates[monthDates.length - 1]?.isoDate;
+      const { startDate, endDate } = monthDateRange;
 
       if (!startDate || !endDate || !hasSupabaseConfig) {
         return;
@@ -117,7 +118,7 @@ function PublicDisplayPage() {
     return () => {
       isMounted = false;
     };
-  }, [monthDates]);
+  }, [monthDates, monthDateRange]);
 
   return (
     <main className="display-page">

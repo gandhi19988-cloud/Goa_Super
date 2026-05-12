@@ -10,6 +10,11 @@
   box-sizing: border-box;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -17,6 +22,7 @@ body {
 
 .display-page {
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 16px;
   background:
     linear-gradient(180deg, #fff8eb 0%, #f4f1ea 42%, #ece8dd 100%);
@@ -192,6 +198,7 @@ body {
 
 .admin-page {
   min-height: 100vh;
+  min-height: 100dvh;
   display: grid;
   place-items: center;
   padding: 20px;
@@ -304,6 +311,7 @@ body {
   color: #3b2c00;
   font-size: 14px;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
 .admin-alert.success {
@@ -406,6 +414,7 @@ body {
   color: #123c18;
   font-size: 14px;
   line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .month-toolbar {
@@ -591,12 +600,46 @@ body {
 }
 
 @media (max-width: 760px) {
+  body {
+    min-width: 0;
+  }
+
   .display-page {
     padding: 10px;
   }
 
   .display-header {
+    padding: 10px 0 12px;
     justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .display-header h1 {
+    font-size: 34px;
+    line-height: 1.05;
+  }
+
+  .brand-kicker {
+    font-size: 12px;
+  }
+
+  .display-intro {
+    margin-bottom: 10px;
+    padding: 12px 10px;
+  }
+
+  .display-intro p {
+    font-size: 12px;
+  }
+
+  .display-intro h2 {
+    font-size: 26px;
+    line-height: 1.08;
+  }
+
+  .display-status {
+    font-size: 12px;
+    line-height: 1.35;
   }
 
   .date-row {
@@ -605,25 +648,87 @@ body {
 
   .date-cell {
     min-height: auto;
+    padding: 10px;
     align-items: center;
     text-align: center;
+  }
+
+  .date-cell strong {
+    font-size: 17px;
   }
 
   .slot-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .slot-cell {
+    min-height: 72px;
+    padding: 10px 8px;
+  }
+
+  .slot-cell strong {
+    font-size: 18px;
+    overflow-wrap: anywhere;
+  }
+
+  .display-footer {
+    padding-bottom: 0;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .admin-page {
+    display: block;
+    padding: 12px;
+  }
+
+  .admin-panel,
+  .admin-dashboard {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .admin-brand {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .admin-brand h1 {
+    font-size: 24px;
+    line-height: 1.1;
+  }
+
   .dashboard-header {
     align-items: flex-start;
     flex-direction: column;
+    gap: 12px;
+  }
+
+  .dashboard-header .secondary-button {
+    width: 100%;
   }
 
   .dashboard-grid {
     grid-template-columns: 1fr;
   }
 
+  .dashboard-summary strong {
+    font-size: 16px;
+    overflow-wrap: anywhere;
+  }
+
+  .dashboard-panel {
+    min-height: auto;
+    padding: 14px;
+  }
+
+  .dashboard-panel h2 {
+    font-size: 20px;
+  }
+
   .settings-form {
     grid-template-columns: 1fr;
+    padding: 14px;
   }
 
   .editor-header,
@@ -634,29 +739,138 @@ body {
 
   .editor-header {
     display: grid;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .editor-header h2 {
+    font-size: 21px;
+  }
+
+  .editor-status {
+    max-width: none;
+    width: 100%;
   }
 
   .month-toolbar {
     justify-content: flex-start;
+    width: 100%;
+  }
+
+  .month-toolbar strong {
+    text-align: left;
+  }
+
+  .editor-date-cell {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .editor-slot-row {
+    align-items: stretch;
+  }
+
+  .secondary-button,
+  .admin-form button,
+  .settings-form button,
+  .month-toolbar button,
+  .editor-actions button {
+    min-height: 44px;
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 520px) {
+  .editor-slot-row {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-actions {
+    width: 100%;
+  }
+
+  .editor-actions button {
+    flex: 1 1 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .display-page {
+    padding: 8px;
+  }
+
+  .display-header {
+    text-align: left;
+  }
+
   .logo-mark {
     width: 76px;
     height: 76px;
     font-size: 18px;
   }
 
+  .display-header h1 {
+    font-size: 30px;
+  }
+
+  .display-intro h2 {
+    font-size: 24px;
+  }
+
   .slot-grid {
     grid-template-columns: 1fr;
+  }
+
+  .slot-cell {
+    min-height: 64px;
+  }
+
+  .slot-cell strong {
+    font-size: 17px;
+  }
+
+  .admin-page {
+    padding: 8px;
+  }
+
+  .admin-panel,
+  .admin-dashboard {
+    padding: 14px;
   }
 
   .admin-brand h1 {
     font-size: 22px;
   }
 
-  .editor-slot-row {
-    grid-template-columns: 1fr;
+  .admin-form {
+    gap: 12px;
+  }
+
+  .settings-form {
+    padding: 12px;
+  }
+
+  .month-toolbar {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .month-toolbar strong {
+    min-width: 0;
+    grid-column: 1 / -1;
+    order: -1;
+    text-align: center;
+  }
+
+  .month-toolbar button {
+    min-width: 0;
+    padding: 0 8px;
+  }
+
+  .editor-actions {
+    flex-direction: column;
+  }
+
+  .editor-actions button {
+    width: 100%;
   }
 }
