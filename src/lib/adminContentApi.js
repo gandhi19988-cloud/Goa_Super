@@ -42,15 +42,16 @@ export async function clearSlotContent(contentDate, slotTime) {
 
 export async function touchSiteLastUpdated() {
   if (!supabase) {
-    return { error: null };
+    return { data: null, error: null };
   }
 
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from('site_settings')
     .update({ last_updated_at: new Date().toISOString() })
-    .not('id', 'is', null);
+    .not('id', 'is', null)
+    .select('id, last_updated_at');
 
-  return { error };
+  return { data, error };
 }
 
 export async function saveSiteSettings(settings) {

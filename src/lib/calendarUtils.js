@@ -1,4 +1,10 @@
-import { eachDayOfInterval, endOfMonth, format, startOfMonth } from 'date-fns';
+import {
+  eachDayOfInterval,
+  endOfMonth,
+  format,
+  startOfMonth,
+  subDays,
+} from 'date-fns';
 
 export const EMPTY_SLOT_PLACEHOLDER = '*** *';
 
@@ -25,10 +31,20 @@ function getMonthDays(referenceDate) {
 function formatMonthDate(date) {
   return {
     date,
-    isoDate: format(date, 'yyyy-MM-dd'),
+    isoDate: formatLocalDateKey(date),
     dayLabel: format(date, 'EEE'),
     dateLabel: format(date, 'dd MMM yyyy'),
   };
+}
+
+export function formatLocalDateKey(date = new Date()) {
+  return format(date, 'yyyy-MM-dd');
+}
+
+export function parseLocalDateKey(dateKey) {
+  const [year, month, day] = dateKey.split('-').map(Number);
+
+  return new Date(year, month - 1, day);
 }
 
 export function getCurrentMonthDates(referenceDate = new Date(), order = 'desc') {
@@ -40,8 +56,27 @@ export function getCurrentMonthDates(referenceDate = new Date(), order = 'desc')
 
 export function getCurrentMonthDateRange(referenceDate = new Date()) {
   return {
-    startDate: format(startOfMonth(referenceDate), 'yyyy-MM-dd'),
-    endDate: format(endOfMonth(referenceDate), 'yyyy-MM-dd'),
+    startDate: formatLocalDateKey(startOfMonth(referenceDate)),
+    endDate: formatLocalDateKey(endOfMonth(referenceDate)),
+  };
+}
+
+export function getRollingDisplayDates(
+  baseDate = new Date(),
+  totalDays = 30,
+) {
+  return Array.from({ length: totalDays }, (_, index) =>
+    formatMonthDate(subDays(baseDate, index)),
+  );
+}
+
+export function getRollingDisplayDateRange(
+  baseDate = new Date(),
+  totalDays = 30,
+) {
+  return {
+    startDate: formatLocalDateKey(subDays(baseDate, totalDays - 1)),
+    endDate: formatLocalDateKey(baseDate),
   };
 }
 

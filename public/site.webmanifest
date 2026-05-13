@@ -1,0 +1,19 @@
+{
+  "name": "Goa Super Satta",
+  "short_name": "Goa Super Satta",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#b51f1f",
+  "background_color": "#fff8eb",
+  "display": "standalone"
+}

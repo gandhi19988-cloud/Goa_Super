@@ -268,13 +268,17 @@ function AdminDashboardPage({ adminEmail, onSignOut }) {
       return;
     }
 
-    await touchSiteLastUpdated();
+    const { error: lastUpdatedError } = await touchSiteLastUpdated();
 
     setSlotValues((currentValues) => ({
       ...currentValues,
       [inputKey]: value,
     }));
-    setStatusMessage(`Saved ${day.dateLabel} at ${slotTime}.`);
+    setStatusMessage(
+      lastUpdatedError
+        ? `Saved ${day.dateLabel} at ${slotTime}, but last updated could not be refreshed.`
+        : `Saved ${day.dateLabel} at ${slotTime}.`,
+    );
     setSavingKey('');
   }
 
@@ -292,13 +296,17 @@ function AdminDashboardPage({ adminEmail, onSignOut }) {
       return;
     }
 
-    await touchSiteLastUpdated();
+    const { error: lastUpdatedError } = await touchSiteLastUpdated();
 
     setSlotValues((currentValues) => ({
       ...currentValues,
       [inputKey]: '',
     }));
-    setStatusMessage(`Cleared ${day.dateLabel} at ${slotTime}.`);
+    setStatusMessage(
+      lastUpdatedError
+        ? `Cleared ${day.dateLabel} at ${slotTime}, but last updated could not be refreshed.`
+        : `Cleared ${day.dateLabel} at ${slotTime}.`,
+    );
     setSavingKey('');
   }
 
