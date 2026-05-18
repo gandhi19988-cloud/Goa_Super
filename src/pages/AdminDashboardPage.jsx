@@ -20,7 +20,7 @@ import {
   fetchSiteSettings,
   mapSlotContentByDate,
 } from '../lib/displayContentApi';
-import defaultLogoUrl from '../../logo/logo2.png';
+import { mainLogoUrl } from '../lib/brandAssets';
 
 const LEGACY_SITE_TITLE = 'Kolkata Fatafati';
 const LEGACY_LOGO_FILENAME = 'logo1';
@@ -316,7 +316,7 @@ function AdminDashboardPage({ adminEmail, onSignOut }) {
         <header className="dashboard-header">
           <div className="admin-brand">
             <div className="logo-mark" aria-hidden="true">
-              <img src={defaultLogoUrl} alt="" />
+              <img src={mainLogoUrl} alt="" />
             </div>
             <div>
               <p className="brand-kicker">Private Control</p>

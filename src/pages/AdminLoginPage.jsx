@@ -6,8 +6,8 @@ import {
   signOutAdmin,
 } from '../lib/adminAuth';
 import { hasSupabaseConfig } from '../lib/supabaseClient';
+import { mainLogoUrl } from '../lib/brandAssets';
 import AdminDashboardPage from './AdminDashboardPage';
-import defaultLogoUrl from '../../logo/logo2.png';
 
 function AdminLoginPage() {
   const [email, setEmail] = useState('');
@@ -98,7 +98,7 @@ function AdminLoginPage() {
       <section className="admin-panel" aria-labelledby="admin-login-title">
         <div className="admin-brand">
           <div className="logo-mark" aria-hidden="true">
-            <img src={defaultLogoUrl} alt="" />
+            <img src={mainLogoUrl} alt="" />
           </div>
           <div>
             <p className="brand-kicker">Private Control</p>

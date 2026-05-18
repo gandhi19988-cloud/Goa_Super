@@ -15,14 +15,14 @@ import {
   mapSlotContentByDate,
 } from '../lib/displayContentApi';
 import { hasSupabaseConfig } from '../lib/supabaseClient';
-import defaultLogoUrl from '../../logo/logo2.png';
+import { mainLogoUrl } from '../lib/brandAssets';
 
 const LEGACY_SITE_TITLE = 'Kolkata Fatafati';
 const LEGACY_LOGO_FILENAME = 'logo1';
 
 const DEFAULT_SITE_SETTINGS = {
   siteTitle: 'Goa Super Satta',
-  logoUrl: '',
+  logoUrl: mainLogoUrl,
   emptyStateText: EMPTY_SLOT_PLACEHOLDER,
   defaultSlots: DEFAULT_TIME_SLOTS,
   lastUpdatedAt: '',
@@ -190,7 +190,7 @@ function PublicDisplayPage() {
     <main className="display-page">
       <header className="display-header">
         <div className="logo-mark" aria-hidden="true">
-          <img src={defaultLogoUrl} alt="" />
+          <img src={mainLogoUrl} alt="" />
         </div>
         <div>
           <p className="brand-kicker">Welcome to</p>
